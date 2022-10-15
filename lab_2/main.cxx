@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     vector<int> vec{4, 1, 7, 5, 3, 6};
-    Sort::QuickSort(vec.begin(), vec.end());
+    Sort::QuickSortParallel(vec.begin(), vec.end());
 
     for (auto& n : vec)
     {
