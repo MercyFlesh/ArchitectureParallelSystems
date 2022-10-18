@@ -49,12 +49,13 @@ public:
 	    {
             #pragma omp parallel sections num_threads(2)
             {
+                
                 #pragma omp section
                 {
                     while (begin[i] < midd)
 	    		        i++;
                 }                
-                #pragma section
+                #pragma omp section
                 {
                     while (begin[j] > midd)
 	    		        j--;
@@ -77,7 +78,8 @@ public:
 	        	    QuickSort(begin, begin + j + 1);
             }
             #pragma omp section
-            {   if (size > i)
+            {   
+                if (size > i)
 	        	    QuickSort(begin + i, end);
             }
         }   

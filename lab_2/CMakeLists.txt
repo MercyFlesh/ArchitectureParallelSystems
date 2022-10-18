@@ -10,6 +10,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 set(PROJECT_SOURCES
         main.cxx
+        Sort.hpp
 )
 
 add_executable(main ${PROJECT_SOURCES})
