@@ -6,6 +6,7 @@ namespace LinerSystem {
     template<typename T>
     double GetDeterminant(const std::vector<std::vector<T>>& a)
     {
+        const double e = 1E-9;
         std::vector<std::vector<double>> triangleMatrix(a.size(), std::vector<double>(a.size()));
         for (std::size_t i = 0; i < a.size(); i++)
         {
@@ -27,7 +28,7 @@ namespace LinerSystem {
                 }
             }
 
-            if (pivot == 0)
+            if (std::abs(pivot) < e)
             {
                 det = 0;
                 break;
@@ -42,10 +43,13 @@ namespace LinerSystem {
             det *= pivot;
             for (std::size_t j = i + 1; j < triangleMatrix.size(); j++) 
             {
-                for (std::size_t k = i + 1; k < triangleMatrix.size(); k++) 
+                if (std::abs(triangleMatrix[j][i]) > e)
                 {
-                    triangleMatrix[j][k] -= triangleMatrix[j][i] * triangleMatrix[i][k] / 
-                                            pivot;
+                    for (std::size_t k = i + 1; k < triangleMatrix.size(); k++) 
+                    {
+                        triangleMatrix[j][k] -= triangleMatrix[j][i] * triangleMatrix[i][k] / 
+                                                pivot;
+                    }
                 }
             }
         }
